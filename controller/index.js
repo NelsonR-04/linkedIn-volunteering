@@ -1,4 +1,5 @@
 import fetch from "node-fetch"
+import QRCode from 'qrcode'
 
 const getLinkedInProfileInfo = async (req, res) => {
   try {
@@ -6,7 +7,7 @@ const getLinkedInProfileInfo = async (req, res) => {
 
     url.searchParams.append("client_id", process.env.LINKEDIN_CLIENT_ID)
     url.searchParams.append("response_type", "code")
-    url.searchParams.append("redirect_uri", "http://localhost:3000/add-linkedin-volunteering")
+    url.searchParams.append("redirect_uri", `${process.env.API_BASE_URL}/add-linkedin-volunteering`)
     url.searchParams.append("scope", "profile email openid")
 
     res.redirect(url)
@@ -25,7 +26,7 @@ const getLinkedInProfileData = async (req, res) => {
       url.searchParams.append("grant_type", 'authorization_code')
       url.searchParams.append("client_id", process.env.LINKEDIN_CLIENT_ID)
       url.searchParams.append("client_secret", process.env.LINKEDIN_CLIENT_SECRET)
-      url.searchParams.append("redirect_uri", "http://localhost:3000/add-linkedin-volunteering")
+      url.searchParams.append("redirect_uri", `${process.env.API_BASE_URL}/add-linkedin-volunteering`)
       url.searchParams.append("code", code)
 
       const response = await fetch(url, {
@@ -83,4 +84,15 @@ const getLinkedInProfile = async (req, res) => {
   }
 }
 
-export { getLinkedInProfileInfo, getLinkedInProfileData, getLinkedInProfile }
+const generateQR = async (req, res) => {
+  try {
+    const url = `${process.env.API_BASE_URL}/generate-qr`;
+    const qrCodeImage = await QRCode.toDataURL(url);
+    res.send(`<img src="${qrCodeImage}" alt="QR Code"/>`);
+  } catch (err) {
+    console.error('Error generating QR code:', err);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
+export { getLinkedInProfileInfo, getLinkedInProfileData, getLinkedInProfile, generateQR }
