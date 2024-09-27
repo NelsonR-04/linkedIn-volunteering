@@ -1,0 +1,30 @@
+{
+  "name": "y-nuts",
+  "version": "1.0.0",
+  "description": "LinkedIn integration",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NelsonR-04/linkedIn-volunteering.git"
+  },
+  "author": "Nelson R",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NelsonR-04/linkedIn-volunteering/issues"
+  },
+  "homepage": "https://github.com/NelsonR-04/linkedIn-volunteering#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "dot-env": "^0.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "node": "^22.9.0",
+    "node-fetch": "^3.3.2",
+    "qrcode": "^1.5.4"
+  }
+}
