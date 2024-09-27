@@ -86,7 +86,7 @@ const getLinkedInProfile = async (req, res) => {
 
 const generateQR = async (req, res) => {
   try {
-    const url = `${process.env.API_BASE_URL}/generate-qr`;
+    const url = `${process.env.API_BASE_URL}`;
     const qrCodeImage = await QRCode.toDataURL(url);
     res.send(`<img src="${qrCodeImage}" alt="QR Code"/>`);
   } catch (err) {
