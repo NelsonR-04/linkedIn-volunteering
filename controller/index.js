@@ -53,7 +53,8 @@ const getLinkedInProfileData = async (req, res) => {
         const responseP = await fetch(peopleUrl, {
           method: 'POST',
           headers: {
-            'Authorization': `Bearer ${access_token}`
+            'Authorization': `Bearer ${access_token}`,
+            'LinkedIn-Version': '202409',
           }
         })
         const dataP = await responseP.json()
