@@ -58,7 +58,7 @@ const getLinkedInProfileData = async (req, res) => {
         })
         const dataP = await responseP.json()
         console.log(dataP)
-        res.send({dataP})
+        res.send({...dataP, url: `https://api.linkedin.com/v2/people/id=${sub}/volunteeringExperiences` })
       }
     } else {
       res.send(res)
