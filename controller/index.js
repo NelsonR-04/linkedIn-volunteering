@@ -53,13 +53,13 @@ const getLinkedInProfileData = async (req, res) => {
         const responseP = await fetch(peopleUrl, {
           method: 'POST',
           headers: {
-            'Authorization': `Bearer ${access_token}`,
             'LinkedIn-Version': '202409',
+            'Authorization': `Bearer ${access_token}`
           }
         })
         const dataP = await responseP.json()
         console.log(dataP)
-        res.send({...dataP, url: `https://api.linkedin.com/v2/people/id=${sub}/volunteeringExperiences` })
+        res.send({...dataP, url: `https://api.linkedin.com/v2/people/id=${sub}/volunteeringExperiences`})
       }
     } else {
       res.send(res)
